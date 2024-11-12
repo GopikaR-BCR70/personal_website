@@ -505,7 +505,7 @@ h6 { font-size: 16px; }
 	font-family: var(--font-family-extra);
 	margin-bottom: 50px;
 }
-.foliox_tm_button{
+.foliox_tm_button button{
 	width: 100%;
 	height: auto;
 	clear: both;
