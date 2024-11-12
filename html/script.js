@@ -1,65 +1,40 @@
-function validate() {
-    // Clear previous error messages
-    document.getElementById("nameError").innerHTML = "";
-    document.getElementById("emailError").innerHTML = "";
-    document.getElementById("phoneError").innerHTML = "";
-    document.getElementById("subjectError").innerHTML = "";
-    document.getElementById("messageError").innerHTML = "";
+// validation 
+function validate(event) {
+    event.preventDefault();  // Prevent form submission
 
-    var isValid = true;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
 
-    // Get form inputs
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
-    var subject = document.getElementById("subject").value;
-  
-
-    // Name validation
-    if (name == "") {
-        document.getElementById("nameError").innerHTML = "Please enter your name.";
-        isValid = false;
+    // Validation checks
+    if (name === "") {
+        alert("Name must be filled out");
+        return false;
     }
 
-    // Email validation
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email == "" || !emailPattern.test(email)) {
-        document.getElementById("emailError").innerHTML = "Please enter a valid email address.";
-        isValid = false;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
     }
 
-    // Phone number validation (only digits and length check)
-    var phonePattern = /^[0-9]{10}$/;
-    if (phone == "" || !phonePattern.test(phone)) {
-        document.getElementById("phoneError").innerHTML = "Please enter a valid 10-digit phone number.";
-        isValid = false;
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+        alert("Please enter a valid phone number (10 digits)");
+        return false;
     }
 
-    // Subject validation
-    if (subject == "") {
-        document.getElementById("subjectError").innerHTML = "Please enter a subject.";
-        isValid = false;
+    if (subject === "") {
+        alert("Please enter a subject");
+        return false;
     }
 
-    // Message validation
-    if (message == "") {
-        document.getElementById("messageError").innerHTML = "Please enter your message.";
-        isValid = false;
+    if (message === "") {
+        alert("Please enter your message");
+        return false;
     }
-
-    return isValid; // Only submit the form if all validation passed
 }
 
-
-// send email 
-
-function sendMail(){
-    let parms ={
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message:document.getElementById('message').value
-    }
-    emailjs.send("service_p2wr2yp","template_gowqgm4",parms).then(alert("Email Sent!!"));
-}
 
